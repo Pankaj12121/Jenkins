@@ -45,7 +45,7 @@
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" libdir="${lib}" destdir="${bin}" />
+			<javac srcdir="${src}" classpathref="lib" includeAntRuntime="No" destdir="${bin}" />
 			<echo> /* Compiled Directory Classes */ </echo>
 		</target>
 		

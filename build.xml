@@ -13,7 +13,7 @@
 	<property name ="report-dir" value="${basedir}/Test-Report" />
 	<property name ="testng-report-dir" value="${basedir}/TestNGreport" />
 	
-	<!-- +++====== Set the classpath ====  -->
+	<!-- ====== Set the classpath ====  -->
 		<path id="classpath">
 			<pathelement location="${bin}" />
 			<fileset dir="${lib}">
@@ -21,6 +21,16 @@
 			</fileset>
 		</path>
 		
+	   <path id="libs">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${env.M2_HOME}\.m2\repository">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement path="${basedir}/${bin}"/>
+		</path>
+	
 		<!-- Delete directories  -->
 		<target name="delete-dir">
 			<delete dir="${bin}" />
@@ -35,7 +45,7 @@
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+			<javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" libdir="${lib}" destdir="${bin}" />
 			<echo> /* Compiled Directory Classes */ </echo>
 		</target>
 		

@@ -7,7 +7,7 @@
 <project basedir="." default="testng-execution" name="JenkinsPro">
 	
 	<property name ="basedir" value="." />
-	<property name ="lib" value="${basedir}/lib" />
+	<property name ="libs" value="${basedir}/lib" />
 	<property name ="src" value="${basedir}/src" />
 	<property name ="bin" value="${basedir}/bin" />
 	<property name ="report-dir" value="${basedir}/Test-Report" />
@@ -45,7 +45,7 @@
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src}" classpathref="lib" includeAntRuntime="No" destdir="${bin}" />
+			<javac srcdir="${src}" classpathref="libs" includeAntRuntime="No" destdir="${bin}" />
 			<echo> /* Compiled Directory Classes */ </echo>
 		</target>
 		

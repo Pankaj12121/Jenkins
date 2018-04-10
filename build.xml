@@ -7,7 +7,7 @@
 <project basedir="." default="testng-execution" name="JenkinsPro">
 	
 	<property name ="basedir" value="." />
-	<!--property name ="lib" value="${basedir}/lib" /-->
+	<property name ="lib" value="${basedir}/lib" />
 	<property name ="src" value="${basedir}/src" />
 	<property name ="bin" value="${basedir}/bin" />
 	<property name ="report-dir" value="${basedir}/Test-Report" />
@@ -40,7 +40,7 @@
 		</target>
 		
 		<!-- Runs the file and generates Reportng report for TestNG-->
-		<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" />
+		<!--taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" /!-->
 		
 		<target name="testng-execution" depends="compile">
 			<mkdir dir="${testng-report-dir}" />

@@ -7,7 +7,7 @@
 <project basedir="." default="testng-execution" name="JenkinsPro">
 	
 	<property name ="basedir" value="." />
-	<property name ="libs" value="${basedir}/lib" />
+	<property name ="libs" value="${basedir}/libs" />
 	<property name ="src" value="${basedir}/src" />
 	<property name ="bin" value="${basedir}/bin" />
 	<property name ="report-dir" value="${basedir}/Test-Report" />

@@ -7,45 +7,45 @@
 <project basedir="." default="testng-execution" name="JenkinsPro">
 	
 	<property name ="basedir" value="." />
-	<property name ="libs" value="${basedir}/libs" />
-	<property name ="src" value="${basedir}/src" />
-	<property name ="bin" value="${basedir}/bin" />
+	<property name ="libs.dir" value="${basedir}" />
+	<property name ="src.dir" value="${basedir}/src" />
+	<property name ="bin.dir" value="${basedir}/bin" />
 	<property name ="report-dir" value="${basedir}/Test-Report" />
 	<property name ="testng-report-dir" value="${basedir}/TestNGreport" />
 	
 	<!-- ====== Set the classpath ====  -->
 		<path id="classpath">
-			<pathelement location="${bin}" />
-			<fileset dir="${libs}">
+			<pathelement location="${bin.dir}" />
+			<fileset dir="${libs.dir}">
 				<include name="*.jar" />
 			</fileset>
 		</path>
 		
 	   <path id="libs">
-			<fileset dir="${libs}">
+			<fileset dir="${libs.dir}">
 				<include name="**/*.jar" />
 			</fileset>
 			<fileset dir="${env.M2_HOME}\.m2\repository">
 				<include name="**/*.jar" />
 			</fileset>
-			<pathelement path="${basedir}/${bin}"/>
+			<pathelement path="${basedir}/${bin.dir}"/>
 		</path>
 	
 		<!-- Delete directories  -->
 		<target name="delete-dir">
-			<delete dir="${bin}" />
+			<delete dir="${bin.dir}" />
 			<delete dir="${report-dir}" />
 		</target>
 		
 		<!-- Creating directories -->
 		<target name="create" depends="delete-dir">
-			<mkdir dir="${bin}" />
+			<mkdir dir="${bin.dir}" />
 			<mkdir dir="${report-dir}" />
 		</target>
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src}" classpathref="${libs}" includeAntRuntime="No" destdir="${bin}" />
+			<javac srcdir="${src.dir}" classpathref="${libs.dir}" includeAntRuntime="No" destdir="${bin.dir}" />
 			<echo> /* Compiled Directory Classes */ </echo>
 		</target>
 		
@@ -54,7 +54,7 @@
 		
 		<target name="testng-execution" depends="compile">
 			<mkdir dir="${testng-report-dir}" />
-			<testng outputdir="${testng-report-dir}" classpathref="libs" useDefaultListeners="true">
+			<testng outputdir="${testng-report-dir}" classpathref="classpath" useDefaultListeners="true">
 				<xmlfileset dir="${basedir}" includes="testngBenShell.xml" />
 			</testng>
 		</target>

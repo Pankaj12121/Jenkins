@@ -13,19 +13,21 @@
 	<property name ="report-dir" value="${basedir}/Test-Report" />
 	<property name ="testng-report-dir" value="${basedir}/TestNGreport" />
 	
+	<taskdef resource="testngtasks" classpath="C:\\Users\\pankajs\\.m2\\repository\\testng-6.11.jar"/>
+	
 	<!-- ====== Set the classpath ====  -->
 		<path id="classpath">
 			<pathelement location="${bin.dir}" />
-			<fileset dir="${libs.dir}">
+			<fileset dir="${libs.dir}">	
 				<include name="*.jar" />
-			</fileset>
+			</fileset>	
 		</path>
 		
 	   <path id="libs">
 			<fileset dir="${libs.dir}">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="${env.M2_HOME}\.m2\repository">
+			<fileset dir="C:\\Users\\pankajs\\.m2\\repository">
 				<include name="**/*.jar" />
 			</fileset>
 			<pathelement path="${basedir}/${bin.dir}"/>
@@ -45,18 +47,26 @@
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src.dir}" classpathref="${libs.dir}" includeAntRuntime="No" destdir="${bin.dir}" />
-			<echo> /* Compiled Directory Classes */ </echo>
+			<javac srcdir="${src.dir}" classpathref="libs" includeAntRuntime="No" destdir="${bin.dir}" />
+			<echo>  Compiled Directory Classes  </echo>
 		</target>
 		
 		<!-- Runs the file and generates Reportng report for TestNG-->
 		<!--taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" /!-->
+	
+	<target name="testng-execution" description="Running tests" depends="compile">
+			<echo>Running Tests...</echo>
+			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt.java" classpathref="libs">
+				  <!--jvmarg value="-Xmx1024M"/>-->
+				<!-- <arg value="${currentExecutionResults}"/> -->
+				<!-- <compilerarg line="-J-Xms512M -J-Xmx1024M" />-->
+			</java>
+		</target>
 		
-		<target name="testng-execution" depends="compile">
-			<mkdir dir="${testng-report-dir}" />
-			<testng outputdir="${testng-report-dir}" classpathref="libs" useDefaultListeners="true">
-				<xmlfileset dir="${basedir}" includes="testngBenShell.xml" />
-			</testng>
+	
+	
+	<target name="CompleteSmokeSuite">
+			<antcall target="testng-execution"/>
 		</target>
 
 </project>

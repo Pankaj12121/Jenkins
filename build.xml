@@ -16,12 +16,7 @@
 	<taskdef resource="testngtasks" classpath="C:\\Users\\pankajs\\.m2\\repository\\testng-6.11.jar"/>
 	
 	<!-- ====== Set the classpath ====  -->
-		<path id="classpath">
-			<pathelement location="${bin.dir}" />
-			<fileset dir="${libs.dir}">	
-				<include name="*.jar" />
-			</fileset>	
-		</path>
+		
 		
 	   <path id="libs">
 			<fileset dir="${libs.dir}">
@@ -32,6 +27,13 @@
 			</fileset>
 			<pathelement path="${basedir}/${bin.dir}"/>
 		</path>
+	
+		<path id="classpath">
+				<pathelement location="${bin.dir}" />
+				<fileset dir="${libs.dir}">	
+					<include name="*.jar" />
+				</fileset>	
+			</path>
 	
 		<!-- Delete directories  -->
 		<target name="delete-dir">
@@ -47,7 +49,7 @@
 		
 		<!-- Compile the java code from ${src} into ${bin} -->
 		<target name="compile" depends="create">
-			<javac srcdir="${src.dir}" classpathref="libs" includeAntRuntime="No" destdir="${bin.dir}" />
+			<javac debug="true" srcdir="${src.dir}" classpathref="libs" includeAntRuntime="No" destdir="${bin.dir}" />
 			<echo>  Compiled Directory Classes  </echo>
 		</target>
 		
@@ -56,7 +58,7 @@
 	
 	<target name="testng-execution" description="Running tests" depends="compile">
 			<echo>Running Tests...</echo>
-			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt.java" classpathref="libs">
+			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt" classpathref="libs">
 				  <!--jvmarg value="-Xmx1024M"/>-->
 				<!-- <arg value="${currentExecutionResults}"/> -->
 				<!-- <compilerarg line="-J-Xms512M -J-Xmx1024M" />-->

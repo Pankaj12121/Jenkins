@@ -7,7 +7,7 @@
 <project basedir="." default="testng-execution" name="JenkinsPro">
 	
 	<property name ="basedir" value="." />
-	<property name ="libs.dir" value="${basedir}" />
+	<property name ="libs.dir" value="${basedir}/libs" />
 	<property name ="src.dir" value="${basedir}/src" />
 	<property name ="bin.dir" value="${basedir}/bin" />
 	<property name ="report-dir" value="${basedir}/Test-Report" />
@@ -54,7 +54,7 @@
 		
 		<target name="testng-execution" depends="compile">
 			<mkdir dir="${testng-report-dir}" />
-			<testng outputdir="${testng-report-dir}" classpathref="classpath" useDefaultListeners="true">
+			<testng outputdir="${testng-report-dir}" classpathref="libs" useDefaultListeners="true">
 				<xmlfileset dir="${basedir}" includes="testngBenShell.xml" />
 			</testng>
 		</target>

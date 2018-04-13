@@ -60,7 +60,7 @@
 	
 	<target name="testng-execution" description="Running tests" depends="compile">
 			<echo>Running Tests...</echo>
-			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt" classpathref="classpath">
+			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt" classpathref="libs">
 				  <!--jvmarg value="-Xmx1024M"/>-->
 				<!-- <arg value="${currentExecutionResults}"/> -->
 				<!-- <compilerarg line="-J-Xms512M -J-Xmx1024M" />-->

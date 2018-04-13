@@ -13,7 +13,7 @@
 	<property name ="report-dir" value="${basedir}/Test-Report" />
 	<property name ="testng-report-dir" value="${basedir}/TestNGreport" />
 	
-	<taskdef resource="testngtasks" classpath="C:\\Users\\pankajs\\.m2\\repository\\testng-6.11.jar"/>
+	<taskdef resource="testngtasks" classpath="${basedir}/Maven Dependencies/testng.jar"/>
 	
 	<!-- ====== Set the classpath ====  -->
 		
@@ -22,7 +22,7 @@
 			<fileset dir="${libs.dir}">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="C:\\Users\\pankajs\\.m2\\repository">
+			<fileset dir="C:\Users\pankajs\.m2\repository\org\seleniumhq\selenium">
 				<include name="**/*.jar" />
 			</fileset>
 			<pathelement path="${basedir}/${bin.dir}"/>
@@ -34,6 +34,8 @@
 					<include name="*.jar" />
 				</fileset>	
 			</path>
+	
+	
 	
 		<!-- Delete directories  -->
 		<target name="delete-dir">
@@ -58,7 +60,7 @@
 	
 	<target name="testng-execution" description="Running tests" depends="compile">
 			<echo>Running Tests...</echo>
-			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt" classpathref="libs">
+			<java  dir="${basedir}/${src.dir}" fork="false" failonerror="yes" classname="com.demo.testNG.AssertVsVerify.TestAnt" classpathref="classpath">
 				  <!--jvmarg value="-Xmx1024M"/>-->
 				<!-- <arg value="${currentExecutionResults}"/> -->
 				<!-- <compilerarg line="-J-Xms512M -J-Xmx1024M" />-->
@@ -70,5 +72,7 @@
 	<target name="CompleteSmokeSuite">
 			<antcall target="testng-execution"/>
 		</target>
+	
+	
 
 </project>

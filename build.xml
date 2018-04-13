@@ -22,7 +22,7 @@
 			<fileset dir="${libs.dir}">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="C:\Users\pankajs\.m2\repository\org\seleniumhq\selenium">
+			<fileset dir="C:\Users\pankajs\.m2\repository">
 				<include name="**/*.jar" />
 			</fileset>
 			<pathelement path="${basedir}/${bin.dir}"/>

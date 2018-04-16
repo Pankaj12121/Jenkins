@@ -1,9 +1,17 @@
 package com.demo.testNG.AssertVsVerify;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.Reporter;
@@ -11,15 +19,28 @@ import org.testng.TestRunner;
 
 public class TestAnt {
 	static WebDriver driver ;
-	public static void main(String[] args) {
-	
-		System.setProperty("webdriver.chrome.driver","C:\\Grid\\chromedriver.exe");
-		driver = new ChromeDriver();
+	public static void main(String[] args) throws MalformedURLException {
+		String GridURL="http://localhost:4444/wd/hub";
+		//System.setProperty("webdriver.chrome.driver","C:\\Grid\\chromedriver.exe");
+		//driver = new ChromeDriver();
+		DesiredCapabilities capability = new DesiredCapabilities();
+		capability = DesiredCapabilities.chrome();
+		capability.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-extensions");
+		
+		ArrayList<String> excludeSwitches = new ArrayList<String>();
+		excludeSwitches.add("ignore-certificate-errors"); 
+		options.setExperimentalOption("excludeSwitches", excludeSwitches);		
+		capability.setCapability(ChromeOptions.CAPABILITY, options);
+		
 		Report("Driver Launched");
 		String baseUrl = "http://opensource.demo.orangehrmlive.com/";
 		String expectedTitle = "OrangeHRM1";
 		String actualTitle = "";
 		String ExpectedWelcomeUser="Welcome Admin1";
+		
+		driver = new RemoteWebDriver(new URL(GridURL), capability);
 		driver.get(baseUrl);
 		Report("Navigated to"+baseUrl);
 		actualTitle = driver.getTitle();

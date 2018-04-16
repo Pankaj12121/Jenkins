@@ -89,14 +89,7 @@
         <pathelement location="target/classes"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
-    <path id="run.InstanceVariables (2).classpath">
-        <path refid="JenkinsPro.classpath"/>
-        <path refid="Maven Dependencies.libraryclasspath"/>
-    </path>
-    <path id="run.Test (4).classpath">
-        <path refid="JenkinsPro.classpath"/>
-        <path refid="Maven Dependencies.libraryclasspath"/>
-    </path>
+  
     <path id="run.TestAnt.classpath">
         <path refid="JenkinsPro.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
@@ -139,16 +132,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="InstanceVariables (2)">
-        <java classname="com.demo.testNG.AssertVsVerify.InstanceVariables" failonerror="true" fork="yes">
-            <classpath refid="run.InstanceVariables (2).classpath"/>
-        </java>
-    </target>
-    <target name="Test (4)">
-        <java classname="com.demo.testNG.AssertVsVerify.Test" failonerror="true" fork="yes">
-            <classpath refid="run.Test (4).classpath"/>
-        </java>
-    </target>
+    
     <target name="TestAnt">
         <java classname="com.demo.testNG.AssertVsVerify.TestAnt" failonerror="true" fork="yes">
             <classpath refid="run.TestAnt.classpath"/>

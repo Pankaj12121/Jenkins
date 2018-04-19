@@ -9,7 +9,7 @@
 		<property name ="basedir" 	 value="." />
 	    <property name="src.dir"     value="${basedir}/src"/>
 	    <property name="classes.dir" value="${basedir}/target/classes"/>
-	    <property name="jar.dir"     value="${basedir}/jar"/>
+	    <property name="jar.dir"     value="C:\Users\pankajs\.m2\repository"/>
 
 	    <property name="main-class"  value="com.demo.testNG.AssertVsVerify.TestAnt"/>
 
@@ -26,7 +26,7 @@
 
 	    <target name="jar" depends="compile">
 	        <mkdir dir="${jar.dir}"/>
-	        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+	        <jar destfile="${jar.dir}" basedir="${classes.dir}">
 	            <manifest>
 	                <attribute name="Main-Class" value="${main-class}"/>
 	            </manifest>

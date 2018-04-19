@@ -4,8 +4,13 @@
 	<groupId>DemoProject1</groupId>
 	<artifactId>DemoProject1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<properties>
+		<suiteXmlFile>testngBenShell.xml</suiteXmlFile>
+	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -17,34 +22,25 @@
 			<version>3.11.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>3.11.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.11</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-script-ant</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.16</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.11</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
@@ -62,31 +58,10 @@
 			<version>2.6.0</version>
 		</dependency>
 		<dependency>
-			<groupId>xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.14</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.14</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.6.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache-extras.beanshell/bsh -->
 		<dependency>
 			<groupId>org.apache-extras.beanshell</groupId>
 			<artifactId>bsh</artifactId>
@@ -98,16 +73,6 @@
 			<artifactId>ant-contrib</artifactId>
 			<version>1.0b3</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>24.1-jre</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava-collections</artifactId>
-			<version>r03</version>
-		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -118,45 +83,41 @@
 					<name>traverse</name>
 				</property>
 			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<configuration>
-							<executable>java</executable>
-							<arguments>
-								<argument>-classpath</argument>
-								<classpath />
-								<argument>org.dhappy.test.NeoTraverse</argument>
-							</arguments>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 	</profiles>
-
 	<build>
-
+		<testSourceDirectory>C:\Techcanvass\SeleniumAdvance\src</testSourceDirectory>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
 			</resource>
 		</resources>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<includes>
+						<include>**/Test*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.21.0</version>
+				<configuration>
+					<suitexmlfiles>
+						<suiteXmlFile>testngBenShell.xml</suiteXmlFile>
+					</suitexmlfiles>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
